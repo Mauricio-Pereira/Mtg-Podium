@@ -1,4 +1,5 @@
-﻿using MtgPodium.Models.Entities.ValueObjects;
+﻿using System.ComponentModel.DataAnnotations;
+using MtgPodium.Models.Entities.ValueObjects;
 
 namespace MtgPodium.Models.Entities;
 
@@ -9,11 +10,11 @@ public class Event : BaseEntity
  
     public EventDate Date { get; set; } // Owned Type
     public bool IsOnline { get; set; }
- 
     public Location? Location { get; set; } // Owned Type, nullable for online events
     public int PlayerCount { get; set; }
     public string Source { get; set; }
- 
+    [Required]
+    public int FormatId { get; set; } // Foreign Key
     public Format Format { get; set; } // Association with Format
     public List<Ranking> Rankings { get; set; } = new List<Ranking>();
 }

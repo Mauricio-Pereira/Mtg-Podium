@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MtgPodium.Infrastructure;
+using MtgPodium.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 
 
 #endregion
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
 
 var app = builder.Build();
 
